@@ -1,0 +1,225 @@
+.menu-container {
+  width: 220px;
+  background-color: #c4c4c4;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 10px;
+
+  .menu_controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  &.TOP, &.BOTTOM {
+    width: 100%;
+    height: 180px;
+    padding: 10px 10px;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .menu_controls {
+      flex-direction: row;
+      justify-content: flex-start;
+      width: 60%;
+      height: 100%;
+    }
+
+    .brush-appearance_block,
+    .tools_controls,
+    .radio_controls {
+      margin-top: 0;
+    }
+
+    .positions-block {
+      flex-direction: column;
+      width: auto;
+      height: 100%;
+      margin-right: 48px;
+    }
+
+    .brush-appearance_block {
+      margin-right: 28px;
+    }
+
+    .tools_controls {
+      width: 20%;
+      margin-right: 48px;
+    }
+  }
+
+  .brush-appearance_block,
+  .tools_controls,
+  .radio_controls {
+    margin-top: 28px;
+  }
+
+  .positions-block {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    button {
+      cursor: pointer;
+      border: 2px solid gray;
+      border-radius: 4px;
+      width: 32px;
+      height: 32px;
+      position: relative;
+      background-color: white;
+      transition: border-color .3s linear, transform .3s linear;
+
+      &:disabled {
+        cursor: default;
+        border-color: #1899D6;
+
+        &:before {
+          background-color: #1899D6;
+        }
+      }
+
+      &:before {
+        content: '';
+        position: absolute;
+        background-color: gray;
+        transition: background-color .3s linear, transform .3s linear;
+      }
+
+      &:hover:not(:disabled) {
+        border-color: #1899D6;
+
+        &:before {
+          background-color: #1899D6;
+        }
+      }
+
+        &.top {
+          &:before {
+            width: 30px;
+            height: 12px;
+            top: -1px;
+            right: -1px;
+          }
+        }
+
+        &.bottom {
+          &:before {
+            width: 30px;
+            height: 12px;
+            right: -1px;
+            bottom: -1px;
+          }
+        }
+
+        &.right {
+          &:before {
+            top: -1px;
+            right: -1px;
+            width: 12px;
+            height: 30px;
+          }
+        }
+
+        &.left {
+          &:before {
+            top: -1px;
+            bottom: -1px;
+            left: -1px;
+            width: 12px;
+            height: 30px;
+          }
+        }
+    }
+  }
+
+  .tools_controls {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .color_block {
+      width: 100%;
+      margin-bottom: 8px;
+
+      input + input {
+        margin-top: 15px;
+      }
+
+      input {
+        border: none;
+        height: 42px;
+        width: 100%;
+
+        &:disabled {
+          opacity: 0.2;
+        }
+
+        &::-webkit-color-swatch {
+          border: none;
+        }
+
+        &::-webkit-color-swatch-wrapper {
+          padding: 0;
+        }
+      }
+    }
+
+    .tools_block {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+
+      button {
+        cursor: pointer;
+        width: 28px;
+        height: 28px;
+        border: none;
+        outline: none;
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        svg {
+          fill: #808080;
+        }
+
+        &:disabled {
+          cursor: default;
+          svg {
+            fill: #1899D6;
+          }
+        }
+      }
+    }
+  }
+
+  .radio_controls {
+    div + div {
+      margin-top: 8px;
+    }
+  }
+
+  .buttons .save {
+    margin-top: 10px;
+  }
+
+  .brush-appearance_block {
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #aaaaaa;
+  }
+
+  .size,
+  .opacity {
+    margin-bottom: 20px;
+  }
+}

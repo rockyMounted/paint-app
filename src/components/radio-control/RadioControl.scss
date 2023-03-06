@@ -1,0 +1,56 @@
+.radio-control_container {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    margin-left: -20px;
+    margin-bottom: 8px;
+    font-family: din-round, sans-serif;
+    color: #ffff;
+  }
+
+  input[type=range]{
+    cursor: pointer;
+    -webkit-appearance: none;
+    border-radius: 20px;
+    transition: background 450ms ease-in;
+
+    &:disabled {
+      cursor: default;
+
+      &::-webkit-slider-thumb{
+        background: #808080;
+      }
+    }
+
+    &:hover:not(:disabled) {
+      filter: brightness(1.1);
+    }
+  }
+
+  input[type=range]::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    width: 300px;
+    height: 8px;
+    border: none;
+    border-radius: 20px;
+  }
+
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: #1899D6;
+    margin-top: -4px;
+
+    &:disabled {
+      background: gray;
+    }
+  }
+
+  input[type=range]:enabled:active::-webkit-slider-thumb {
+    background: #077eb5;
+  }
+}
