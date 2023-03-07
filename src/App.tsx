@@ -86,23 +86,22 @@ const App = () => {
 
     return (
         <div className="container">
-            <div className={classNames("container-canvas", position)}>
-                <Canvas
-                    canvasRef={canvasRef}
-                    bgCanvasRef={bgCanvasRef}
-                    width={canvasWidth}
-                    height={canvasHeight}
-                    className={`bg-canvas_${position}`}
-                />
-                <Menu
-                    onDownload={onDownload}
-                    imageData={imageData}
-                    changePosition={changePosition}
-                    clearCanvas={clearCanvas}
-                    position={position}
-                    {...controls}
-                />
-            </div>
+            <Canvas
+                canvasRef={canvasRef}
+                bgCanvasRef={bgCanvasRef}
+                width={canvasWidth}
+                height={canvasHeight}
+                className={`canvas-position_${position}`}
+            />
+            <Menu
+                onDownload={onDownload}
+                imageData={imageData}
+                changePosition={changePosition}
+                clearCanvas={clearCanvas}
+                position={position}
+                className={`menu-position menu-position_${position}`}
+                {...controls}
+            />
             <Modal />
         </div>
     )

@@ -3,6 +3,4 @@ interface ImageData {
   url: string
 }
 
-export {
-  ImageData
-}
+export { ImageData }

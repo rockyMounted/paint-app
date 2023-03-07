@@ -13,10 +13,13 @@ type RadioControlProps = {
   label?: string
 }
 
+const DISABLED_COLOR = '#808080';
+const DEFAULT_COLOR = '#1899D6'
+
 const RadioControl = (props: RadioControlProps) => {
   const { min, max, defaultValue, className, disabled, id, label } = props;
   const [fillValue, setFillValue] = useState(defaultValue || 0);
-  const color = disabled ? '#808080' : '#1899D6'
+  const color = disabled ? DISABLED_COLOR : DEFAULT_COLOR
 
   const onChange = (value: string) => {
     const newValue = Number(value);

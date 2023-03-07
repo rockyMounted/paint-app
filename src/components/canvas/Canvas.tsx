@@ -14,7 +14,7 @@ const Canvas = ({ width, height, canvasRef, bgCanvasRef, className }: CanvasProp
   <>
     <canvas
       ref={canvasRef}
-      className='canvas'
+      className={classNames('canvas', className)}
       width={width}
       height={height}
     />

@@ -1,3 +1,5 @@
+@import './../../variables.scss';
+
 .radio-control_container {
   display: flex;
   flex-direction: column;
@@ -5,8 +7,8 @@
   label {
     margin-left: -20px;
     margin-bottom: 8px;
-    font-family: din-round, sans-serif;
-    color: #ffff;
+    font-family: $main-font;
+    color: $white;
   }
 
   input[type=range]{
@@ -19,7 +21,7 @@
       cursor: default;
 
       &::-webkit-slider-thumb{
-        background: #808080;
+        background: $gray;
       }
     }
 
@@ -42,15 +44,11 @@
     height: 16px;
     width: 16px;
     border-radius: 50%;
-    background: #1899D6;
+    background: $blue;
     margin-top: -4px;
 
     &:disabled {
-      background: gray;
+      background: $gray;
     }
-  }
-
-  input[type=range]:enabled:active::-webkit-slider-thumb {
-    background: #077eb5;
   }
 }

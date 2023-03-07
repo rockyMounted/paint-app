@@ -39,10 +39,11 @@ type MenuProps = {
   changeBrushColor: (value: string) => void,
   changeBackgroundColor: (value: string) => void,
   changeCurrentTool: (tool: Tool) => void,
+  className?: string
 }
 
 const Menu = (props: MenuProps) => {
-  const { changePosition, position, imageData } = props;
+  const { changePosition, position, imageData, className } = props;
   const [brushOpacity, setBrushOpacity] = useState(DEFAULT_BRUSH_OPACITY);
   const [currentTool, setCurrentTool] = useState(props.currentTool);
   const [brushSize, setBrushSize] = useState(DEFAULT_BRUSH_SIZE);
@@ -154,7 +155,7 @@ const Menu = (props: MenuProps) => {
   };
 
   return (
-    <div className={classNames('menu-container', position)}>
+    <div className={classNames('menu-container', position, className)}>
       <div className="menu_controls">
         {renderPositionsMenu()}
         <div className="brush-appearance_block">

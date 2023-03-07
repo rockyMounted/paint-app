@@ -10,34 +10,49 @@ html, body {
 }
 
 .container {
-    background-color: #E7E3EB;
-
-    &-canvas {
-        width: 100%;
-        display: flex;
-
-        &.LEFT {
-            flex-direction: row-reverse;
+    .canvas-position {
+        &_RIGHT {
+            right: 220px;
         }
 
-        &.BOTTOM {
-            flex-direction: column;
+        &_TOP {
+            top: 180px;
         }
 
-        &.TOP {
-            flex-direction: column-reverse;
+        &_LEFT {
+            left: 220px;
+        }
+
+        &_BOTTOM {
+            bottom: 180px;
         }
     }
 
-    .bg-canvas_TOP {
-        top: 180px
-    }
+    .menu-position {
+        position: absolute;
 
-    .bg-canvas_LEFT {
-        left: 220px;
-    }
+        &_RIGHT {
+            top: 0;
+            bottom: 0;
+            right: 0;
+        }
 
-    .bg-canvas_BOTTOM {
-        bottom: 180px;
+        &_TOP {
+            left: 0;
+            right: 0;
+            top: 0;
+        }
+
+        &_LEFT {
+            left: 0;
+            bottom: 0;
+            top: 0;
+        }
+
+        &_BOTTOM {
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }
     }
 }

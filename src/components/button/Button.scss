@@ -1,21 +1,20 @@
+@import './../../variables.scss';
+
 .button {
-  appearance: button;
-  background-color: #1899D6;
+  background-color: $blue;
   border: solid transparent;
   border-radius: 16px;
   border-width: 0 0 4px;
-  box-sizing: border-box;
-  color: #FFFFFF;
+  color: $white;
   cursor: pointer;
   display: inline-block;
-  font-family: din-round, sans-serif;
+  font-family: $main-font;
   font-size: 15px;
   font-weight: 700;
   letter-spacing: .8px;
   line-height: 20px;
   margin: 0;
   outline: none;
-  overflow: visible;
   padding: 13px 16px;
   text-align: center;
   text-transform: uppercase;
@@ -27,11 +26,11 @@
   width: 100%;
 
   &.white {
-    background-color: #d0cfcf;
-    color: #808080;
+    background-color: $gray-light;
+    color: $gray;
 
     &:after {
-      background-color: #efefef;
+      background-color: $white-dark;
     }
   }
 
@@ -42,7 +41,7 @@
   &:after {
     content: "";
     background-clip: padding-box;
-    background-color: #1CB0F6;
+    background-color: $blue-dark;
     border: solid transparent;
     border-radius: 16px;
     border-width: 0 0 4px;
