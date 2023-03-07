@@ -4,7 +4,7 @@ This is a small drawing app
 ## Run
 Clone the project repository:
 ```bash
-git clone https://github.com/rockyMounted/paint-app.git
+  git clone https://github.com/rockyMounted/paint-app.git
 ```
 
 Run the project with npm:
