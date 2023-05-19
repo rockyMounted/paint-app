@@ -51,6 +51,8 @@ const Menu = (props: MenuProps) => {
   const [bgColor, setBgColor] = useState(DEFAULT_BG_COLOR);
   const [brushStyle, setBrushStyle] = useState(defaultBrushStyle)
 
+  console.log('hello')
+
   useEffect(() => {
     setBrushStyle({
       backgroundColor: brushColor,
