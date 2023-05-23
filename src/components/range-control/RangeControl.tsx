@@ -1,8 +1,8 @@
 import { useState } from "react";
 import classNames from "classnames";
-import './RadioControl.scss'
+import './RangeControl.scss'
 
-type RadioControlProps = {
+type RangeControlProps = {
   id: string,
   min: number,
   max: number,
@@ -16,7 +16,7 @@ type RadioControlProps = {
 const DISABLED_COLOR = '#808080';
 const DEFAULT_COLOR = '#1899D6'
 
-const RadioControl = (props: RadioControlProps) => {
+const RangeControl = (props: RangeControlProps) => {
   const { min, max, defaultValue, className, disabled, id, label } = props;
   const [fillValue, setFillValue] = useState(defaultValue || 0);
   const color = disabled ? DISABLED_COLOR : DEFAULT_COLOR
@@ -29,7 +29,7 @@ const RadioControl = (props: RadioControlProps) => {
   }
 
   return (
-    <div className={classNames('radio-control_container', className)}>
+    <div className={classNames('range-control_container', className)}>
       <label htmlFor={id}>{label}</label>
       <input
         type="range"
@@ -47,4 +47,4 @@ const RadioControl = (props: RadioControlProps) => {
   )
 }
 
-export default RadioControl;
+export default RangeControl;

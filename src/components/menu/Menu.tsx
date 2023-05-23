@@ -11,7 +11,7 @@ import {
 import { TOOLS, POSITIONS } from '../../constants/enums'
 import { ImageData } from '../../types/interfaces';
 import { Position, Tool } from '../../types/types';
-import RadioControl from '../radio-control';
+import RadioControl from '../range-control';
 import Button from '../button';
 import './Menu.scss';
 
