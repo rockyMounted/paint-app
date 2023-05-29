@@ -15,7 +15,12 @@ const Modal = () => {
       <div className='modal_dialog'>
         <div className='modal_content'>
           <span className='text'>hello! do you want to have some fun?</span>
-          <Button className='button' onClick={() => onClose()} label='get started!' appearance='white'/>
+          <Button
+            className='button'
+            onClick={() => onClose()}
+            label='get started!'
+            transparentEffect
+          />
         </div>
       </div>
     </div>

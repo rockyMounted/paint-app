@@ -1,4 +1,5 @@
 @import './../../variables.scss';
+@import '../../mixins.scss';
 
 .menu-container {
   width: 220px;
@@ -8,6 +9,18 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px 10px;
+  height: 100%;
+  z-index: 98;
+
+  @include mobile {
+    padding-top: 50px;
+    right: -220px !important;
+    transition: right 0.5s;
+
+    &.show {
+      right: 0 !important;
+    }
+  }
 
   .menu_controls {
     display: flex;
@@ -64,6 +77,10 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+
+    @include mobile {
+      display: none;
+    }
 
     button {
       cursor: pointer;
@@ -207,8 +224,10 @@
     }
   }
 
-  .buttons .save {
-    margin-top: 10px;
+  .buttons {
+    .button + .button {
+      margin-top: 10px;
+    }
   }
 
   .brush-appearance_block {

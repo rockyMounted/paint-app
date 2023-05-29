@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import classNames from 'classnames';
 import { Brush, Eraser, Fill } from '../../icons/icons';
 import {
@@ -8,11 +8,13 @@ import {
   DEFAULT_BRUSH_OPACITY,
   BUTTON_MODE
 } from '../../constants/constants';
-import { TOOLS, POSITIONS } from '../../constants/enums'
+import { TOOLS, POSITIONS } from '../../constants/enums';
 import { ImageData } from '../../types/interfaces';
 import { Position, Tool } from '../../types/types';
+import DragDrop, { DraggableElementProps } from '../drag-drop/DragDrop';
 import RadioControl from '../range-control';
 import Button from '../button';
+import BurgerButton from '../burger-button';
 import './Menu.scss';
 
 const defaultBrushStyle = {
@@ -44,14 +46,14 @@ type MenuProps = {
 
 const Menu = (props: MenuProps) => {
   const { changePosition, position, imageData, className } = props;
+  const menuRef = useRef(null)
   const [brushOpacity, setBrushOpacity] = useState(DEFAULT_BRUSH_OPACITY);
   const [currentTool, setCurrentTool] = useState(props.currentTool);
   const [brushSize, setBrushSize] = useState(DEFAULT_BRUSH_SIZE);
   const [brushColor, setBrushColor] = useState(DEFAULT_BRUSH_COLOR);
   const [bgColor, setBgColor] = useState(DEFAULT_BG_COLOR);
-  const [brushStyle, setBrushStyle] = useState(defaultBrushStyle)
-
-  console.log('hello')
+  const [brushStyle, setBrushStyle] = useState(defaultBrushStyle);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     setBrushStyle({
@@ -99,7 +101,7 @@ const Menu = (props: MenuProps) => {
         {positionsList.map(item => (
           <button
             key={item}
-            className={item.toLowerCase()}
+            className={classNames('pressed-button_effect', item.toLowerCase())}
             disabled={position === item}
             onClick={() => changePosition(item)}
           />
@@ -109,7 +111,6 @@ const Menu = (props: MenuProps) => {
   }
 
   const renderToolsMenu = () => {
-
     const toolsList: ToolsList = [
       {
         name: TOOLS.BRUSH,
@@ -130,7 +131,7 @@ const Menu = (props: MenuProps) => {
         {toolsList.map(({ icon, name })=> (
           <button
             key={name}
-            className={name.toLowerCase()}
+            className={classNames('pressed-button_effect', name.toLowerCase())}
             onClick={() => changeCurrentTool(name)}
             disabled={currentTool === name}
           >
@@ -156,70 +157,96 @@ const Menu = (props: MenuProps) => {
     clearCanvas();
   };
 
-  return (
-    <div className={classNames('menu-container', position, className)}>
-      <div className="menu_controls">
-        {renderPositionsMenu()}
-        <div className="brush-appearance_block">
-          <span
-            className='brush'
-            style={brushStyle}
-          />
-        </div>
-        <div className="tools_controls">
-          <div className="color_block">
-            <input
-              type="color"
-              id="brushColor"
-              value={brushColor}
-              disabled={currentTool === TOOLS.ERASER || currentTool === TOOLS.FILL}
-              onChange={(event) => changeBrushColor(event.currentTarget.value)}
-            />
-            <input
-              type="color"
-              id="bgColor"
-              value={bgColor}
-              disabled={currentTool === TOOLS.ERASER || currentTool === TOOLS.BRUSH}
-              onChange={(event) => changeBgColor(event.currentTarget.value)}
-            />
-          </div>
-          {renderToolsMenu()}
-        </div>
-        <div className="radio_controls">
-          <RadioControl
-            className="size"
-            label='size'
-            id="size"
-            defaultValue={brushSize}
-            min={1}
-            max={100}
-            disabled={currentTool === TOOLS.FILL}
-            onChange={changeBrushLineWidth}
-          />
-          <RadioControl
-            className="opacity"
-            label="opacity"
-            id="opacity"
-            disabled={currentTool === TOOLS.ERASER || currentTool === TOOLS.FILL}
-            defaultValue={brushOpacity}
-            min={0}
-            max={10}
-            onChange={changeBrushOpacity}
-          />
-        </div>
-      </div>
-      <div className="buttons">
-        <Button className="clear" onClick={() => clearCanvas()} label='clear'/>
+  const toggleBurgerButton = (isOpen: boolean) => setIsMenuOpen(isOpen);
+
+  const Buttons = [
+    {
+      element: (props: DraggableElementProps) => (
+        <Button
+          className="clear"
+          onClick={() => clearCanvas()}
+          label='clear'
+          transparentEffect
+          { ...props }
+        />
+      ),
+      order: 1,
+      id: 'clear'
+    },
+    {
+      element: (props: DraggableElementProps) => (
         <Button
           className="save"
           onClick={onDownload}
-          label='save image'
+          label="save image"
           mode={BUTTON_MODE.LINK}
           href={imageData?.url}
           download={imageData?.name}
+          { ...props }
         />
+      ),
+      order: 2,
+      id: 'save'
+    }
+  ]
+
+  return (
+    <>
+      <BurgerButton onClick={toggleBurgerButton} />
+      <div className={classNames('menu-container', position, className, { 'show' : isMenuOpen})} ref={menuRef}>
+        <div className="menu_controls">
+          {renderPositionsMenu()}
+          <div className="brush-appearance_block">
+            <span
+              className='brush'
+              style={brushStyle}
+            />
+          </div>
+          <div className="tools_controls">
+            <div className="color_block">
+              <input
+                type="color"
+                id="brushColor"
+                value={brushColor}
+                disabled={currentTool === TOOLS.ERASER || currentTool === TOOLS.FILL}
+                onChange={(event) => changeBrushColor(event.currentTarget.value)}
+              />
+              <input
+                type="color"
+                id="bgColor"
+                value={bgColor}
+                disabled={currentTool === TOOLS.ERASER || currentTool === TOOLS.BRUSH}
+                onChange={(event) => changeBgColor(event.currentTarget.value)}
+              />
+            </div>
+            {renderToolsMenu()}
+          </div>
+          <div className="radio_controls">
+            <RadioControl
+              className="size"
+              label='size'
+              id="size"
+              defaultValue={brushSize}
+              min={1}
+              max={100}
+              disabled={currentTool === TOOLS.FILL}
+              onChange={changeBrushLineWidth}
+            />
+            <RadioControl
+              className="opacity"
+              label="opacity"
+              id="opacity"
+              disabled={currentTool === TOOLS.ERASER || currentTool === TOOLS.FILL}
+              defaultValue={brushOpacity}
+              min={0}
+              max={10}
+              onChange={changeBrushOpacity}
+            />
+          </div>
+        </div>
+        <DragDrop elements={Buttons} className="buttons" />
       </div>
-    </div>
+    </>
   )
 }
 

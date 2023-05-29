@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import classNames from 'classnames';
-import Modal from './components/modal'
-import Canvas from './components/canvas'
-import Menu from './components/menu'
-import useCanvas from './hooks/useCanvas'
-import { VERTICAL_MENU_WIDTH, HORIZONTAL_MENU_HEIGHT } from './constants/constants'
+import Modal from './components/modal';
+import Canvas from './components/canvas';
+import Menu from './components/menu';
+import useCanvas from './hooks/useCanvas';
+import { VERTICAL_MENU_WIDTH, HORIZONTAL_MENU_HEIGHT } from './constants/constants';
 import { POSITIONS } from './constants/enums';
 import { ImageData } from './types/interfaces';
 import { Position } from './types/types';

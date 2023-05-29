@@ -20,10 +20,10 @@
   text-transform: uppercase;
   touch-action: manipulation;
   transform: translateZ(0);
-  transition: filter .2s;
   vertical-align: middle;
   white-space: nowrap;
   width: 100%;
+  transition: all .5s ease;
 
   &.white {
     background-color: $gray-light;
@@ -36,6 +36,25 @@
 
   &.link {
     text-decoration: none;
+  }
+
+  &.transparentEffect {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+    color: $white;
+
+    &:after {
+      background-color: rgba(255, 255, 255, 0.2);
+      transition: all .5s ease;
+    }
+
+    &:hover:not(:disabled) {
+      background-color: rgba(255, 255, 255, 0.2);
+
+      &:after {
+        background-color: rgba(255, 255, 255, 0.4);
+      }
+    }
   }
 
   &:after {
@@ -51,6 +70,7 @@
     right: 0;
     top: 0;
     z-index: -1;
+    transition: border-width 0.5s;
   }
 
   &:hover:not(:disabled) {
@@ -59,5 +79,13 @@
 
   &:disabled {
     cursor: auto;
+  }
+
+  &:active {
+    transform: scale(0.95);
+
+    &:after {
+      border-width: 0 0 0;
+    }
   }
 }
